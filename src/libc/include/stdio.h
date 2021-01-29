@@ -7,6 +7,7 @@ extern "C" {
 #define _STDIO_H
 
 #include <sys/cdefs.h>
+#include <stddef.h>
 
 #define EOF (-1)
 
@@ -15,7 +16,7 @@ int putchar(int);
 int puts(const char*);
 
 unsigned char getchar();
-unsigned char* gets();
+unsigned char* gets(unsigned char* buf, size_t buf_len);
 
 #ifdef __cplusplus
 }

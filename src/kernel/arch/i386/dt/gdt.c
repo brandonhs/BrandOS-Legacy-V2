@@ -16,7 +16,7 @@ struct gdt_ptr {
     uint32_t base;
 } __attribute__((packed));
 
-struct gdt_entry gdt[3];
+struct gdt_entry gdt[6];
 struct gdt_ptr gp;
 
 extern void gdt_flush(struct gdt_ptr*);
@@ -40,6 +40,8 @@ void gdt_install() {
     gdt_set_gate(0, 0, 0, 0, 0);
     gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF);
     gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF);
+    gdt_set_gate(3, 0, 0xFFFFFFFF, 0xFA, 0xCF);
+    gdt_set_gate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF);
 
     gdt_flush((uint32_t)&gp);
 }

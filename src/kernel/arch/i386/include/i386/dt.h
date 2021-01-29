@@ -42,5 +42,6 @@ struct regs {
 
 typedef void (*isr_t)(struct regs); // define isr_t type as a callback function with registers_t as a parameter
 void register_interrupt_handler(uint8_t n, isr_t handler);
+void unregister_interrupt_handler(uint8_t n);
 
 #endif /* _ARCH_I386_DT_H */

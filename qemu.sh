@@ -2,4 +2,4 @@
 set -e
 . ./iso.sh
 
-qemu-system-$(./target-triplet-to-arch.sh $HOST) -cdrom ${ISO_NAME} -D ./log.txt
+qemu-system-$(./target-triplet-to-arch.sh $HOST) -cdrom ${ISO_NAME}

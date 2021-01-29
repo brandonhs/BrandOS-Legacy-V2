@@ -17,4 +17,6 @@ void tty_newline();
 void tty_vga_memcpy(size_t dstrow, size_t srcrow);
 void tty_scroll();
 
+void tty_backspace();
+
 #endif

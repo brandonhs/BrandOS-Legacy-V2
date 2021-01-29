@@ -3,7 +3,7 @@
 
 #include <string.h>
 
-#include "vga.h"
+#include <i386/vga.h>
 
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
@@ -40,7 +40,8 @@ void tty_setcolor(uint8_t color) {
 void tty_putchar(char c) {
     unsigned char uc = c;
 	if (uc == '\n') tty_newline();
-	else {
+    else if (uc == '\b') tty_backspace();
+    else {
 		tty_putentryat(uc, tty_color, tty_col, tty_row);
 		if (++tty_col == VGA_WIDTH) {
 			tty_newline();
@@ -101,4 +102,15 @@ void tty_vga_memcpy(size_t dstrow, size_t srcrow) {
     uint16_t *dest_mem = (uint16_t*)(VGA_MEMORY + get_offset(0, dstrow));
 
     memcpy(dest_mem, source_mem, num_bytes);
+}
+
+
+void tty_backspace() {
+    if (tty_col == 0) {
+        tty_col = VGA_WIDTH-1;
+        if (tty_row != 0) tty_row--;
+    }
+    else tty_col--;
+    tty_putentryat(' ', tty_color, tty_col, tty_row);
+    tty_update_cursor();
 }

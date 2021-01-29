@@ -32,6 +32,8 @@ $(ARCH_FREEOBJS) \
 stdio/printf.o \
 stdio/putchar.o \
 stdio/puts.o \
+stdio/gets.o \
+stdio/getchar.o \
 stdlib/abort.o \
 stdlib/itoa.o \
 string/memcmp.o \
